@@ -11,8 +11,9 @@ const burger = {
             cb(res);
         } );
     },
-    insert: (cb) => {
-        orm.insertOne("burgers", (res) => {
+    //the cols to update, values to update with, and callback function will be defined in the controller
+    insert: (cols, vals, cb) => {
+        orm.insertOne("burgers", cols, vals, (res) => {
             cb(res);
         } );
     },

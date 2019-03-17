@@ -18,6 +18,22 @@ router.get("/" , (request, response) => {
         response.render("index", o4H)
     });
 });
+//This route provides the client with the ability to post a new burger to the burgers table
+//by default the burger has not yet been devoured, so we only need to get the name of the new burger
+//from the post requst. We will send the resulting 
+router.post("/api/burgers", (req, res) =>{
+    console.log("logging request " + req.body.burger_name);
+    burger.insert([
+        "burger_name"
+    ], [
+        req.body.burger_name
+    ], 
+    //this will send a response with the id of the resulting row as a json object
+    (result) =>{
+        
+        res.json({ id: result.insertId });
+    });
+});
 
 module.exports = router;
 
