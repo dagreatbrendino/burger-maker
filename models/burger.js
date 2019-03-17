@@ -7,6 +7,7 @@ burgers_db*/
 const burger = {
     all: (cb) => {
         orm.selectAll("burgers", (res) => {
+            console.log("calling orm")
             cb(res);
         } );
     },

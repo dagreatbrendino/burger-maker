@@ -5,12 +5,16 @@
 <ul>
     {{#each burgers}}
         {{#unless devoured}}
-            {{> burgers/burgers-menu devoured=true}}
+            {{> burgers/burgers-card devoured=true}}
          {{/unless}}
     {{/each}}
 </ul>
 
 <h2>Devoured Burgers</h2>
 <ul>
-    
-</ul>
+    {{#each burgers}}
+        {{#if devoured}}
+            {{> burgers/burgers-card devoured=false}}
+        {{/if}}
+    {{/each}}
+</ul>   

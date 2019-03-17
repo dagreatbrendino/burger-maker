@@ -8,6 +8,7 @@ const router = express.Router();
 //send a response the renders with index.handlebars passing in all burgers that were returned from
 //the query
 router.get("/" , (request, response) => { 
+    console.log("controller routing");
     burger.all( (data)=> {
         //the object for handlebars
         let o4H = {
@@ -15,8 +16,8 @@ router.get("/" , (request, response) => {
         }
         console.log(o4H);
         response.render("index", o4H)
-    })
-})
+    });
+});
 
 module.exports = router;
 
