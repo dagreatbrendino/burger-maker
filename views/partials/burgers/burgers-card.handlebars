@@ -1,8 +1,5 @@
 <li>
     {{burger_name}}
-    <button class="devour-button" data-id="{{id}}" data-devoured-status="{{devoured}}">
-        {{#if devoured}}Order Again{{else}}Devour Burger!{{/if}}
-    </button>
     <ul>
         {{#each ingredients as |ingredient index|}}
             <li data-ing-id={{index}}>
@@ -10,4 +7,7 @@
             </li>
         {{/each}}
     </ul>
+    <button class="devour-button" data-id="{{id}}" data-devoured-status="{{devoured}}">
+        {{#if devoured}}Order Again{{else}}Devour Burger!{{/if}}
+    </button>
 </li>

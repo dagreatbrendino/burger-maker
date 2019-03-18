@@ -1,9 +1,10 @@
 //importing connection to burgers_db database
 let connection = require ("../config/connection.js");
-
+//this function will create the question marks for queries so that values can be escaped
 const questionMarks = (valuesArr)=>{
     let valuesString= "";
     for (let val in valuesArr) { valuesString+="?"};
+    valuesString = valuesString.split("").join(",");
     return valuesString;
 }
 //this function is used to properly format the columns for update queries

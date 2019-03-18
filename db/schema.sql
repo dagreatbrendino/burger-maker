@@ -12,5 +12,11 @@ CREATE TABLE burgers(
     PRIMARY KEY (`id`)
 );
 
+CREATE TABLE ingredients(
+	id INTEGER NOT NULL AUTO_INCREMENT,
+    ingredient_name VARCHAR (50) NOT NULL,
+    PRIMARY KEY(`id`)
+);
+
 
 
