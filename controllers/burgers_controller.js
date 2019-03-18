@@ -8,13 +8,18 @@ const router = express.Router();
 //send a response the renders with index.handlebars passing in all burgers that were returned from
 //the query
 router.get("/" , (request, response) => { 
-    console.log("controller routing");
     burger.all( (data)=> {
+        
+        for(row in data){
+            //the ingredients array is a JSON array and needs to be parsed into an array that handlebars will 
+            //be able to understand
+            data[row].ingredients = JSON.parse(data[row].ingredients)
+        }
         //the object for handlebars
         let o4H = {
             burgers: data
         }
-        console.log(o4H);
+        // console.log(o4H);
         response.render("index", o4H)
     });
 });
@@ -22,7 +27,6 @@ router.get("/" , (request, response) => {
 //by default the burger has not yet been devoured, so we only need to get the name of the new burger
 //from the post requst. We will send the resulting 
 router.post("/api/burgers", (req, res) =>{
-    console.log("logging request " + req.body.burger_name);
     burger.insert([
         "burger_name"
     ], [
@@ -34,19 +38,21 @@ router.post("/api/burgers", (req, res) =>{
         res.json({ id: result.insertId });
     });
 });
-
+//this route should be able to handle update requests for various updates from the client
 router.put("/api/burgers/:id", (req, res) =>{
+    //this is the burger that we will be updating in the table
     let ID = req.params.id;
+    //these arrays will hold the columns to be updated, and the the values to update them wtih
     let cols = [ ];
     let vals = [ ]
-    console.log(req.body.devoured);
+    //the request body will be parsed into the cols and vals array
     for (key in req.body){
         cols.push(key);
-        console.log("req body key " , req.body[key]);
+       //the values will need to be parsed into proper json objects so they can be undertood in the query
         vals.push(JSON.parse(req.body[key]));
-        console.log(typeof req.body[key]);
     }
     console.log(cols, vals);
+    //using the burger model to query the database
     burger.update(cols, ID, vals, (result) =>{
         res.status(200).end();
     });

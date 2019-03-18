@@ -27,7 +27,7 @@ $( ()=>{
         let currentStatus = $(event.currentTarget).data("devoured-status");
         console.log(currentStatus);
         let newStatus = {
-            devoured: !currentStatus,
+            devoured: !currentStatus
         }
         $.ajax("/api/burgers/" + id, {
             type: "PUT",

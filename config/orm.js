@@ -6,7 +6,7 @@ const questionMarks = (valuesArr)=>{
     for (let val in valuesArr) { valuesString+="?"};
     return valuesString;
 }
-
+//this function is used to properly format the columns for update queries
 const setColsQuery = (cols) => {
     let colsQuery = ""
     for (let i = 0; i < cols.length; i++){
@@ -58,12 +58,14 @@ const orm = {
 
     //this function will update column information for a particular burger in the burgers table
     updateOne: (tableToQuery, columns, location, values, callback) => {
-
+        //the query string is built
         let queryString = "UPDATE " + tableToQuery;
         queryString += " SET ";
         queryString += setColsQuery(columns);
         queryString += "WHERE id = ?"
         console.log(queryString);
+        //this will be an array populated by the actions of the client and will be used to provide
+        //the escaped queries for the sql query
         let clientString = values.concat(location);
         console.log(clientString);
         connection.query(queryString, clientString, (err, result) =>{
