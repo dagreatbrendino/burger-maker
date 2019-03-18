@@ -17,8 +17,8 @@ const burger = {
             cb(res);
         } );
     },
-    update: (cb) => {
-        orm.updateOne("burgers", (res) => {
+    update: (cols, loc, vals, cb) => {
+        orm.updateOne("burgers", cols, loc, vals, (res) => {
             cb(res);
         } );
     }

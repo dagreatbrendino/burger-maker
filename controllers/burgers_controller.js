@@ -35,5 +35,22 @@ router.post("/api/burgers", (req, res) =>{
     });
 });
 
+router.put("/api/burgers/:id", (req, res) =>{
+    let ID = req.params.id;
+    let cols = [ ];
+    let vals = [ ]
+    console.log(req.body.devoured);
+    for (key in req.body){
+        cols.push(key);
+        console.log("req body key " , req.body[key]);
+        vals.push(JSON.parse(req.body[key]));
+        console.log(typeof req.body[key]);
+    }
+    console.log(cols, vals);
+    burger.update(cols, ID, vals, (result) =>{
+        res.status(200).end();
+    });
+})
+
 module.exports = router;
 

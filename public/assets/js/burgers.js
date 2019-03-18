@@ -18,4 +18,23 @@ $( ()=>{
             }
         );
     });
+
+    $(".devour-button").on("click", (event) => {
+        event.preventDefault(); 
+        console.log(this);
+        let id = $(event.currentTarget).data("id");
+        console.log(id);
+        let currentStatus = $(event.currentTarget).data("devoured-status");
+        console.log(currentStatus);
+        let newStatus = {
+            devoured: !currentStatus,
+        }
+        $.ajax("/api/burgers/" + id, {
+            type: "PUT",
+            data: newStatus
+        }).then( () => {
+            console.log("changed devoured from " + currentStatus);
+            location.reload();
+        });
+    })
 });

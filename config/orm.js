@@ -6,6 +6,22 @@ const questionMarks = (valuesArr)=>{
     for (let val in valuesArr) { valuesString+="?"};
     return valuesString;
 }
+
+const setColsQuery = (cols) => {
+    let colsQuery = ""
+    for (let i = 0; i < cols.length; i++){
+        //if there is more than one column and this is not the last element of the columns array
+        if ( i !== (cols.length -1) && cols.length >= 1){
+            colsQuery += cols[i] + " = ?, "
+        }
+        else {
+            colsQuery += cols[i] + " = ? "
+        }
+       
+    }
+    console.log(colsQuery)
+    return(colsQuery);
+}
 const orm = {
     //this functtion will select column information for all burgers
     selectAll: (tableToQuery, callback) => {
@@ -41,8 +57,20 @@ const orm = {
     },
 
     //this function will update column information for a particular burger in the burgers table
-    updateOne: () => {
+    updateOne: (tableToQuery, columns, location, values, callback) => {
 
+        let queryString = "UPDATE " + tableToQuery;
+        queryString += " SET ";
+        queryString += setColsQuery(columns);
+        queryString += "WHERE id = ?"
+        console.log(queryString);
+        let clientString = values.concat(location);
+        console.log(clientString);
+        connection.query(queryString, clientString, (err, result) =>{
+            if (err) throw err;
+
+            callback(result);
+        });
     }
 }
 module.exports = orm;
