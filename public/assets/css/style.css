@@ -1,4 +1,72 @@
+body{
+    background-image: url("../images/cartoon-hamburger-wallpaper-10309080.jpg");
+    background-repeat: repeat;
+}
 .burgers-div {
     overflow-y: scroll;
     max-height: 500px;
+}
+.burger-col{
+    background-color: rgb(172, 172, 172);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.burger-item{
+    background-color: rgb(236, 202, 89);
+    padding-left: 0;
+}
+.burgers-list{
+    list-style: none;
+    padding-left: 0;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 3px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: red; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b30000; 
+  }
+  .ingredient-list{
+    list-style: none;
+    padding-left: 0;
+  }
+  .ingredient{
+      font-weight: 300;
+  }
+  .burger-item{
+    font-weight: 600;
+}
+.header-con{
+    background-color:  rgb(172, 172, 172);
+}
+.new-burger-col{
+    background-color:   rgb(172, 172, 172);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.form-div{
+    background-color: rgb(236, 202, 89);
+    padding: 0 5px;
+}
+.ingr-input{
+    font-size: .7rem;
+}
+.submit-ingredient{
+    font-size: .7rem;
+
+}
+.top-buffer{
+    margin-top: 20px;
 }

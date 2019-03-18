@@ -1,8 +1,8 @@
-<li>
+<li class="burger-item">
     {{burger_name}}
-    <ul>
+    <ul class="ingredient-list">
         {{#each ingredients as |ingredient index|}}
-            <li data-ing-id={{index}}>
+            <li class="ingredient" data-ing-id={{index}}>
                 {{ingredient}}
             </li>
         {{/each}}

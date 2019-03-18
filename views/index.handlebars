@@ -1,10 +1,13 @@
-<h1>Burgers</h1>
+<div class="text-center header-con">
+<h1>Servin' Burgers</h1>
+</div>
+
 <div class="container">
     <div class="row justify-content-between">
-        <div class="col-4">
+        <div class="col-4 burger-col">
             <h2>Undevoured Burgers</h2>
             <div class="burgers-div">
-                <ul>
+                <ul class="burgers-list text-center">
                     {{#each burgers}}
                     {{#unless devoured}}
                     {{> burgers/burgers-card devoured=false}}
@@ -13,10 +16,10 @@
                 </ul>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-4 burger-col">
             <h2>Devoured Burgers</h2>
             <div class="burgers-div">
-                <ul>
+                <ul class="burgers-list text-center">
                     {{#each burgers}}
                     {{#if devoured}}
                     {{> burgers/burgers-card devoured=true}}
@@ -27,24 +30,23 @@
         </div>
     </div>
 
-    <div class="row justify-content-center">
-        <div class="col-10">
-            <h2>Add a new burger!</h2>
+    <div class="row justify-content-center top-buffer">
+        <div class="col-10 new-burger-col text-center">
+            <h2>Add a new burger!</h2>  
             <form class="form-div">
                 <div class="form-block">
-                    <label>Burger Name</label>
-                    <input type="text" id="burg-name" name="name">
+                    <label>Burger Name</label><br><input type="text" id="burg-name" name="name">
                 </div>
                 <div class="form-block">
-                    <label>Ingredients:</label><br>
+                    <label class="ing-input-label">Ingredients</label><br>
                     {{#each allIngredients as |ingredients index|}}
                     <input type="checkbox" value={{index}}>{{ingredients}}
                     {{/each}}
+                    <input class="ingr-input"type="text" id="ingr-name" name="name"><button class="submit-ingredient" id="submit-ingredient" type="submit">Add New Ingredient</button><br>
                 </div>
-    
-                    <label>New Ingredient</label>
-                    <input type="text" id="ingr-name" name="name"><button id="submit-ingredient" type="submit">Add Ingredient</button>
-                <button type="submit">Add Burger</button>
+                     <button type="submit">Add Burger</button>
+                    
+                
             </form>
         </div>
     </div>
