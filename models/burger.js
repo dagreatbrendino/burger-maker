@@ -11,6 +11,11 @@ const burger = {
             cb(res);
         } );
     },
+    one: (loc, cb) =>{
+        orm.selectOne("burgers", loc, (res) =>{
+            cb(res);
+        });
+    },
     //the cols to update, values to update with, and callback function will be defined in the controller
     insert: (cols, vals, cb) => {
         orm.insertOne("burgers", cols, vals, (res) => {

@@ -29,7 +29,6 @@ router.get("/" , (request, response) => {
             burgers: burgerData,
             allIngredients: allIngredientsArr
         }
-        // console.log(o4H);
         response.render("index", obj4Hbrs)
     });
 });
@@ -79,6 +78,26 @@ router.put("/api/burgers/:id", (req, res) =>{
         res.status(200).end();
     });
 })
+
+router.get("/api/burgers/:id", (req, res) =>{
+    let location = req.params.id;
+    let returnedBurger;
+    burger.one(location, (burgerInfo) =>{
+        returnedBurger =burgerInfo[0];
+        returnedBurger.ingredients = JSON.parse(returnedBurger.ingredients);
+        allIngredientsArr = [];
+        ingredient.all((ingredientData) =>{
+            for (row in ingredientData){
+                allIngredientsArr.push(ingredientData[row].ingredient_name);
+            }
+        });
+        let burgerHbs = {
+            burger: returnedBurger,
+            allIngredients: allIngredientsArr
+        }
+        res.render("burgerEdit", burgerHbs);
+    });
+});
 
 router.post("/api/ingredients", (req, res) =>{
     let newIngredient = req.body.ingredient_name;

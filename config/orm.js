@@ -33,7 +33,15 @@ const orm = {
             callback(result);
         });
     },
+    //this function will select column information for one burger
+    selectOne: (tableToQuery, itemToQuery, callback) =>{
+        let queryString = "SELECT * FROM  " + tableToQuery + " WHERE id =?;";
+        connection.query(queryString, itemToQuery, (err, result) =>{
+            if (err) throw err;
 
+            callback(result);
+        })
+    },
     //this function will add a new burger to the burgers table 
     insertOne: (tableToQuery, columns, values, callback) => {
         //first the query that will be used to insert the new burger into the table is built
