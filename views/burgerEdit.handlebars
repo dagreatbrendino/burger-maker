@@ -1,16 +1,18 @@
 <div class="container">
     <div class="row justify-content-center top-buffer">
         <div class="col-10 new-burger-col text-center">
-            <h2>Update burger!</h2>  
+            <h2 id="update-header" data-burg-id={{{data.burger.id}}}>Update burger!</h2>  
             <form class="form-div">
+                
                 <div class="form-block">
-                    <label>Burger Name</label><br><input type="text" id="burg-name" name="name" value='{{burger.burger_name}}'>
+                    <label>Burger Name</label><br><input type="text" id="burg-name" name="name" value='{{data.burger.burger_name}}'>
+                     <button type="submit">Update Burger</button>
                 </div>
                 <div class="form-block">
                     <label class="ing-input-label">Ingredients</label><br>
-         
-                    {{#each allIngredients as |ingredient index|}}
-                        {{#if (isIn ingredient ../burger.ingredients)}}
+                    
+                    {{#each data.allIngredients as |ingredient index|}}
+                        {{#if (isIn ingredient ../data.burger.ingredients)}}
                             <input type="checkbox" value={{index}} checked="checked">{{ingredient}}
                         {{else}}
                             <input type="checkbox" value={{index}}>{{ingredient}}

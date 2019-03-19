@@ -1,5 +1,5 @@
 <li class="burger-item">
-    {{burger_name}}
+    {{burger_name}}<a class="edit-link" href="/api/burgers/{{id}}">Edit</a>
     <ul class="ingredient-list">
         {{#each ingredients as |ingredient index|}}
             <li class="ingredient" data-ing-id={{index}}>

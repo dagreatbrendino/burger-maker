@@ -66,11 +66,31 @@ router.put("/api/burgers/:id", (req, res) =>{
     //these arrays will hold the columns to be updated, and the the values to update them wtih
     let cols = [ ];
     let vals = [ ]
+    let burgerIngredients = [];
+    //if there are ingredients in this update request
+    if (req.body.ingredients){
+        for (item  in req.body.ingredients){
+            // console.log("burgr ingredient " + allIngredientsArr[req.body.ing_ind[item]]);
+            burgerIngredients.push(allIngredientsArr[req.body.ingredients[item]]);
+        }
+        req.body.ingredients = JSON.stringify(burgerIngredients);
+    }
     //the request body will be parsed into the cols and vals array
     for (key in req.body){
         cols.push(key);
+        console.log("cols in req" + cols);
+        switch(key){
+            case "burger_name": 
+                vals.push(req.body[key]);
+                break;
+            case "devoured": 
+                vals.push(JSON.parse(req.body[key]));
+                break;
+            case "ingredients":
+                vals.push(req.body[key]);
+                break;
+        }
        //the values will need to be parsed into proper json objects so they can be undertood in the query
-        vals.push(JSON.parse(req.body[key]));
     }
     console.log(cols, vals);
     //using the burger model to query the database
@@ -78,27 +98,34 @@ router.put("/api/burgers/:id", (req, res) =>{
         res.status(200).end();
     });
 })
-
+//this route will get one burger
 router.get("/api/burgers/:id", (req, res) =>{
+    //the id of the burger to update in the table
     let location = req.params.id;
+    //the burger object 
     let returnedBurger;
+    //the handlebars object
+    let burgerHbs;
     burger.one(location, (burgerInfo) =>{
         returnedBurger =burgerInfo[0];
+        //parsing the ingredients of the burger so the client can use them 
         returnedBurger.ingredients = JSON.parse(returnedBurger.ingredients);
+        //pulling in data from ingredients table
         allIngredientsArr = [];
         ingredient.all((ingredientData) =>{
             for (row in ingredientData){
                 allIngredientsArr.push(ingredientData[row].ingredient_name);
             }
         });
-        let burgerHbs = {
+        burgerHbs = {
             burger: returnedBurger,
             allIngredients: allIngredientsArr
         }
-        res.render("burgerEdit", burgerHbs);
+        res.render("burgerEdit", {data: burgerHbs, layout: "update"});
     });
-});
 
+});
+//this route gives the client the ability to add new ingredients to the table in the databse
 router.post("/api/ingredients", (req, res) =>{
     let newIngredient = req.body.ingredient_name;
     ingredient.insert([

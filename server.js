@@ -26,7 +26,6 @@ const hbsHelpers = exphbs.create({
     extname: ".handlebars"
 })
 
-
 app.engine(".handlebars", hbsHelpers.engine);
 app.set("view engine", ".handlebars");
 
