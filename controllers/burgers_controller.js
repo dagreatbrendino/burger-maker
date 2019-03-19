@@ -116,12 +116,12 @@ router.get("/api/burgers/:id", (req, res) =>{
             for (row in ingredientData){
                 allIngredientsArr.push(ingredientData[row].ingredient_name);
             }
+            burgerHbs = {
+                burger: returnedBurger,
+                allIngredients: allIngredientsArr
+            }
+            res.render("burgerEdit", {data: burgerHbs, layout: "update"});
         });
-        burgerHbs = {
-            burger: returnedBurger,
-            allIngredients: allIngredientsArr
-        }
-        res.render("burgerEdit", {data: burgerHbs, layout: "update"});
     });
 
 });
