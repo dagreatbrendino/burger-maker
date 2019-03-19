@@ -1,18 +1,3 @@
-<li class="burger-item">
-    {{burger.burger_name}}
-    {{allIngredients}}
-    {{burger.ingredients}}
-    <ul class="ingredient-list">
-        {{#each burger.ingredients as |burgingredient index|}}
-            <li class="ingredient" data-ing-id={{index}}>
-                {{burgingredient}}
-            </li>
-        {{/each}}
-    </ul>
-    <button class="devour-button" data-id="{{id}}" data-devoured-status="{{devoured}}">
-        {{#if devoured}}Order Again{{else}}Devour Burger!{{/if}}
-    </button>
-</li>
 <div class="container">
     <div class="row justify-content-center top-buffer">
         <div class="col-10 new-burger-col text-center">
@@ -23,16 +8,14 @@
                 </div>
                 <div class="form-block">
                     <label class="ing-input-label">Ingredients</label><br>
+         
                     {{#each allIngredients as |ingredient index|}}
-                        {{#isIn (ingredient) burger.ingredients}}
-                        {{!-- <input type="checkbox" value={{index}}>{{ingredients}} --}}
-                        {{/isIn}}
+                        {{#if (isIn ingredient ../burger.ingredients)}}
+                            <input type="checkbox" value={{index}} checked="checked">{{ingredient}}
+                        {{else}}
+                            <input type="checkbox" value={{index}}>{{ingredient}}
+                        {{/if}}
                     {{/each}}
-                    <input class="ingr-input"type="text" id="ingr-name" name="name"><button class="submit-ingredient" id="submit-ingredient" type="submit">Add New Ingredient</button><br>
-                </div>
-                     <button type="submit">Add Burger</button>
-                    
-                
             </form>
         </div>
     </div>

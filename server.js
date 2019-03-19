@@ -19,7 +19,7 @@ const hbsHelpers = exphbs.create({
             console.log(val1);
             console.log("array: ", array);
         console.log(array.includes(val1))
-        return array.includes(val1);
+        return JSON.parse(array.includes(val1));
         }
     },
     defaultLayout: "main",
