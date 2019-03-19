@@ -23,13 +23,13 @@ router.get("/" , (request, response) => {
             for (row in ingredientData){
                 allIngredientsArr.push(ingredientData[row].ingredient_name);
             }
-        });
-        //the object for handlebars
+                    //the object for handlebars
         let obj4Hbrs = {
             burgers: burgerData,
             allIngredients: allIngredientsArr
         }
         response.render("index", obj4Hbrs)
+        });
     });
 });
 //This route provides the client with the ability to post a new burger to the burgers table
