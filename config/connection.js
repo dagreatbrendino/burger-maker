@@ -6,7 +6,7 @@ let connection = mysql.createConnection({
     user: "root",
     password: "",
     database: "burgers_db"
-});
+} || process.env.JAWSDB_URL);
 
 connection.connect( err =>{
     if (err) throw err.stack;
